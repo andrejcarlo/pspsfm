@@ -1,43 +1,81 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import {MediaPlayer} from './components/MediaPlayer'
-import { Song } from './components/interfaces';
+import { MediaPlayer } from './components/MediaPlayer'
+import { AzuraData, RadioStation } from './components/interfaces';
 import { Typography } from '@mui/material';
+import { getNowPlaying } from './client/fetchChannel'
+import axios from 'axios';
 
+const url = 'http://45.63.41.251/api/nowplaying';
 
 const App : React.FC = () => {
-  const [currentSong, setCurrentSong] = useState<Song | null | undefined>(null);
+  const [currentStation, setCurrentStation] = useState<RadioStation | null | undefined>(null);
+  const [azuraData, setAzuraData] = useState<AzuraData | null>(null);
+  const [loading, setIsLoading] = useState(true);
+  let jsonData : AzuraData;
+  //const {loading, error, data } = useFetch(url);
+  //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
+  
+  //const azuraData : AzuraData = JSON.parse(data);
+  
+  useEffect(() => { 
+    fetchData();
+  }, []) // componentDidMount
 
-  const fetchCurrentSong = () => {
-    // GET request from API
-    setCurrentSong({
-      title: 'Sandstorm',
-      artist: 'Darude',
-    });
 
+  const fetchData = async () => {
+    await axios(url)
+    .then(response => {
+      jsonData = JSON.parse(JSON.stringify(response.data[0]))
+      setAzuraData(jsonData)
+    })
+    .catch(error => {
+      console.log("Error fetching data");
+      console.error(error);
+    })
+    .finally(() => { 
+      setIsLoading(false);
+      console.log(jsonData)
+    })
   }
 
-  useEffect(() => {
-    fetchCurrentSong()
-  }, [])
 
-  //fetchCurrentSong(); 
+  // const updateRadioStationData = () => {
+  //   console.log(data)
 
-  return (
+  //   setAzuraData(data[0]);
+  //   console.log(azuraData);
+  // }
+
+  return loading ? (
     <div className="App">
-      <header className="App-header">
-        <Typography variant="h1" component="div" gutterBottom>
-          pspspspspsps
-        </Typography>
+       <header className="App-header">
+          <Typography variant="h1" component="div" gutterBottom>
+            Loading...
+          </Typography>
+        </header>
+     </div>
+  ) : (
+    
+    <div className="App">
+       <header className="App-header">
+         <Typography variant="h1" component="div" gutterBottom>
+           pspspspspsps
+         </Typography>
 
-        <MediaPlayer 
-        songArtist={currentSong?.artist} 
-        songTitle={currentSong?.title}
-        />
-      </header>
-    </div>
+         <MediaPlayer 
+         songArtist={azuraData?.now_playing.song?.artist} 
+         songTitle={azuraData?.now_playing.song?.title}
+         isPlaying={azuraData?.is_online}
+         radioLink={azuraData?.station.listen_url}
+         />
+       </header>
+     </div>
   );
+
+
 }
 
 export default App;
+

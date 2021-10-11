@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
@@ -8,22 +8,62 @@ import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 interface Props {
     songTitle?: string,
     songArtist?: string,
+    isPlaying?: boolean,
+    radioLink?: string,
 }
 
+const useAudio = (url? : string) => {
+    const [audio] = useState(new Audio(url));
+    const [playing, setPlaying] = useState(false);
+  
+    const toggle = () => setPlaying(!playing);
+  
+    useEffect(() => {
+        playing ? audio.play() : audio.pause();
+      },
+      [playing]
+    );
+  
+    useEffect(() => {
+      audio.addEventListener('ended', () => setPlaying(false));
+      return () => {
+        audio.removeEventListener('ended', () => setPlaying(false));
+      };
+    }, []);
+  
+    return [playing, toggle];
+  };
+
 export const MediaPlayer : React.FC<Props> = (props:Props) => {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [audio] = useState(new Audio(props.radioLink));
+    const [playing, setPlaying] = useState(false);
+  
+    const toggle = () => {
+        setPlaying(!playing);
+        console.log(playing)
+        console.log(props.radioLink)
+
+    }
+  
+    useEffect(() => {
+        playing ? audio.play() : audio.pause();
+      },
+      [playing, audio]
+    );
+    
+
 
     const renderPlayButton = () => { 
-        if (isPlaying == false) {
+        if (playing === false) {
             return ( 
-                <IconButton onClick={() => setIsPlaying(true)} size='large' color="primary">
+                <IconButton onClick={toggle} size='large' color="primary">
                     <PlayCircleOutlineIcon fontSize="inherit" color="primary">
                     </PlayCircleOutlineIcon>
                 </IconButton>
             )
-        } else if (isPlaying == true) {
+        } else if (playing === true) {
             return ( 
-                <IconButton onClick={() => setIsPlaying(false)} size='large' color="primary">
+                <IconButton onClick={toggle} size='large' color="primary">
                     <PauseCircleOutlineIcon fontSize="inherit" color="primary">
                     </PauseCircleOutlineIcon>
                 </IconButton>
@@ -31,13 +71,20 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
         }
     }
 
-    return (
+    return props.isPlaying ? (
         <div>
             <Typography variant="h3" component="div" gutterBottom>
                 {props.songTitle} - {props.songArtist}
             </Typography>
 
             {renderPlayButton()}
+
+        </div>
+    ) : (
+        <div>
+            <Typography variant="h3" component="div" gutterBottom>
+                Meow! Station is offline :(
+            </Typography>
 
         </div>
     )
