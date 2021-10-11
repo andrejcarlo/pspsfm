@@ -1,23 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function App() {
+import {MediaPlayer} from './components/MediaPlayer'
+import { Song } from './components/interfaces';
+import { Typography } from '@mui/material';
+
+
+const App : React.FC = () => {
+  const [currentSong, setCurrentSong] = useState<Song | null | undefined>(null);
+
+  const fetchCurrentSong = () => {
+    // GET request from API
+    setCurrentSong({
+      title: 'Sandstorm',
+      artist: 'Darude',
+    });
+
+  }
+
+  useEffect(() => {
+    fetchCurrentSong()
+  }, [])
+
+  //fetchCurrentSong(); 
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Typography variant="h1" component="div" gutterBottom>
+          pspspspspsps
+        </Typography>
+
+        <MediaPlayer 
+        songArtist={currentSong?.artist} 
+        songTitle={currentSong?.title}
+        />
       </header>
     </div>
   );
