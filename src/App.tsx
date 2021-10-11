@@ -15,7 +15,13 @@ const App : React.FC = () => {
   //const {loading, error, data } = useFetch(url);
   //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
   
-  useEffect(() => { fetchData(); }) // componentDidMount
+  useEffect(() => { 
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 5000);
+
+    return () => clearTimeout(timer)
+  }) // componentDidMount
 
 
   const fetchData = async () => {
@@ -30,7 +36,6 @@ const App : React.FC = () => {
     })
     .finally(() => { 
       setIsLoading(false);
-      console.log(jsonData)
     })
   }
 

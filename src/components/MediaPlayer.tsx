@@ -18,9 +18,6 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
   
     const toggle = () => {
         setPlaying(!playing);
-        console.log(playing)
-        console.log(props.radioLink)
-
     }
   
     useEffect(() => {
