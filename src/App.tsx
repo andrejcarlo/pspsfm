@@ -2,26 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import { MediaPlayer } from './components/MediaPlayer'
-import { AzuraData, RadioStation } from './components/interfaces';
+import { AzuraData } from './components/interfaces';
 import { Typography } from '@mui/material';
-import { getNowPlaying } from './client/fetchChannel'
 import axios from 'axios';
 
 const url = 'http://45.63.41.251/api/nowplaying';
 
 const App : React.FC = () => {
-  const [currentStation, setCurrentStation] = useState<RadioStation | null | undefined>(null);
   const [azuraData, setAzuraData] = useState<AzuraData | null>(null);
   const [loading, setIsLoading] = useState(true);
   let jsonData : AzuraData;
   //const {loading, error, data } = useFetch(url);
   //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
   
-  //const azuraData : AzuraData = JSON.parse(data);
-  
-  useEffect(() => { 
-    fetchData();
-  }, []) // componentDidMount
+  useEffect(() => { fetchData();}, []) // componentDidMount
 
 
   const fetchData = async () => {
