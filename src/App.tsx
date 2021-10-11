@@ -15,7 +15,7 @@ const App : React.FC = () => {
   //const {loading, error, data } = useFetch(url);
   //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
   
-  useEffect(() => { fetchData();}, []) // componentDidMount
+  useEffect(() => { fetchData(); }) // componentDidMount
 
 
   const fetchData = async () => {
