@@ -36,6 +36,7 @@ const App : React.FC = () => {
     })
     .finally(() => { 
       setIsLoading(false);
+      console.log(jsonData)
     })
   }
 

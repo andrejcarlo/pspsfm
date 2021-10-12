@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import ReactPlayer from 'react-player'
 
 interface Props {
     songTitle?: string,
@@ -13,19 +14,26 @@ interface Props {
 }
 
 export const MediaPlayer : React.FC<Props> = (props:Props) => {
-    const [audio] = useState(new Audio(props.radioLink));
+    const [url, setUrl] = useState(props.radioLink);
     const [playing, setPlaying] = useState(false);
-  
+    const [volume, setVolume] = useState(0);
+    const [key] = useState(0);
+
     const toggle = () => {
         setPlaying(!playing);
+        setVolume(volume ? 0 : 1);
     }
   
     useEffect(() => {
-        playing ? audio.play() : audio.pause();
+        console.log("url changed");
+        setUrl(props.radioLink);
       },
-      [playing, audio]
+      [props.radioLink]
     );
     
+    const buffering = () => {
+        console.log("pspsfm is buffering");
+    }
 
 
     const renderPlayButton = () => { 
@@ -53,6 +61,19 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
             </Typography>
 
             {renderPlayButton()}
+
+            <ReactPlayer
+            key={key}
+            url={url}
+            playing={props.radioLink ? true : false}
+            volume={volume}
+            width={0}
+            height={0}
+            onError={(e) => console.log("There's been an error playing the file ", e)}
+            onBuffer={buffering}
+            onBufferEnd={()=> console.log("Buffering done")}
+            onReady={() => console.log("Player loaded")}
+            />
 
         </div>
     ) : (
