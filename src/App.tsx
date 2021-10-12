@@ -6,7 +6,7 @@ import { AzuraData } from './components/interfaces';
 import { Typography } from '@mui/material';
 import axios from 'axios';
 
-const url = 'http://play.pspsfm.com/api/nowplaying';
+const url = 'https://play.pspsfm.com/api/nowplaying';
 
 const App : React.FC = () => {
   const [azuraData, setAzuraData] = useState<AzuraData | null>(null);
