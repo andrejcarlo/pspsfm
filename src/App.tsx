@@ -53,8 +53,8 @@ const App : React.FC = () => {
   if (!enabled) return (
     <div className="App">
       <header className="App-header">
-      <IconButton aria-label="fingerprint" color="error" size="large" onClick={() => setEnabled(true)}>
-        <Fingerprint color="inherit"/>
+      <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="error" size="large" onClick={() => setEnabled(true)}>
+        <Fingerprint fontSize="inherit" color="inherit"/>
       </IconButton>
       </header>
     </div>
