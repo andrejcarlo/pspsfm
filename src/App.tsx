@@ -4,6 +4,8 @@ import './App.css';
 import { MediaPlayer } from './components/MediaPlayer'
 import { AzuraData } from './components/interfaces';
 import { Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Fingerprint from '@mui/icons-material/Fingerprint';
 import axios from 'axios';
 
 const url = 'https://play.pspsfm.com/api/nowplaying';
@@ -11,6 +13,7 @@ const url = 'https://play.pspsfm.com/api/nowplaying';
 const App : React.FC = () => {
   const [azuraData, setAzuraData] = useState<AzuraData | null>(null);
   const [loading, setIsLoading] = useState(true);
+  const [enabled, setEnabled] = useState(false);
   let jsonData : AzuraData;
   //const {loading, error, data } = useFetch(url);
   //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
@@ -46,6 +49,17 @@ const App : React.FC = () => {
   //   setAzuraData(data[0]);
   //   console.log(azuraData);
   // }
+
+  if (!enabled) return (
+    <div className="App">
+      <header className="App-header">
+      <IconButton aria-label="fingerprint" color="error" size="large" onClick={() => setEnabled(true)}>
+        <Fingerprint color="inherit"/>
+      </IconButton>
+      </header>
+    </div>
+
+  )
 
   return loading ? (
     <div className="App">

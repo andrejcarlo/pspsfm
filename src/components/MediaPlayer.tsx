@@ -39,15 +39,15 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
     const renderPlayButton = () => { 
         if (playing === false) {
             return ( 
-                <IconButton onClick={toggle} size='large' color="primary">
-                    <PlayCircleOutlineIcon fontSize="inherit" color="primary">
+                <IconButton onClick={toggle} size='large' color="error">
+                    <PlayCircleOutlineIcon fontSize="inherit" color="inherit">
                     </PlayCircleOutlineIcon>
                 </IconButton>
             )
         } else if (playing === true) {
             return ( 
-                <IconButton onClick={toggle} size='large' color="primary">
-                    <PauseCircleOutlineIcon fontSize="inherit" color="primary">
+                <IconButton onClick={toggle} size='large' color="error">
+                    <PauseCircleOutlineIcon fontSize="inherit" color="inherit">
                     </PauseCircleOutlineIcon>
                 </IconButton>
             )
