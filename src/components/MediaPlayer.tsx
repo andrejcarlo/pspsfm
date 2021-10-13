@@ -18,10 +18,12 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
     const [playing, setPlaying] = useState(false);
     const [volume, setVolume] = useState(0);
     const [key] = useState(0);
+    const [muted, setMuted] = useState(true);
 
     const toggle = () => {
         setPlaying(!playing);
-        setVolume(volume ? 0 : 1);
+        //setVolume(volume ? 0 : 1);
+        setMuted(!muted);
     }
   
     useEffect(() => {
@@ -66,13 +68,16 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
             key={key}
             url={url}
             playing={props.radioLink ? true : false}
-            volume={volume}
+            //volume={volume}
+            muted={muted}
             width={0}
             height={0}
+            autoPlay={true}
+            playsinline={true}
             onError={(e) => console.log("There's been an error playing the file ", e)}
             onBuffer={buffering}
             onBufferEnd={()=> console.log("Buffering done")}
-            onReady={() => console.log("Player loaded")}
+            onReady={() => {console.log("Player loaded");}}
             />
 
         </div>
