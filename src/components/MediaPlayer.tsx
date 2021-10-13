@@ -16,7 +16,7 @@ interface Props {
 export const MediaPlayer : React.FC<Props> = (props:Props) => {
     const [url, setUrl] = useState(props.radioLink);
     const [playing, setPlaying] = useState(false);
-    const [volume, setVolume] = useState(0);
+    //const [volume, setVolume] = useState(0);
     const [key] = useState(0);
     const [muted, setMuted] = useState(true);
 
