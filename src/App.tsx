@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import { MediaPlayer } from './components/MediaPlayer'
+import { BuyMeACoffee } from './components/BuyMeACoffee'
 import { AzuraData } from './components/interfaces';
 import { Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import PetsIcon from '@mui/icons-material/Pets';
 import axios from 'axios';
+
 
 const url = 'https://play.pspsfm.com/api/nowplaying';
 
@@ -23,7 +25,7 @@ const App : React.FC = () => {
       fetchData();
     }, 5000);
 
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer);
   }) // componentDidMount
 
 
@@ -70,21 +72,22 @@ const App : React.FC = () => {
         </header>
      </div>
   ) : (
-    
     <div className="App">
-       <header className="App-header">
-         <Typography variant="h1" component="div" gutterBottom>
-           pspspspspsps
-         </Typography>
+      <header className="App-header">
+        <Typography variant="h1" component="div" gutterBottom>
+          pspspspspsps
+        </Typography>
 
-         <MediaPlayer 
-         songArtist={azuraData?.now_playing.song?.artist} 
-         songTitle={azuraData?.now_playing.song?.title}
-         isPlaying={azuraData?.is_online}
-         radioLink={azuraData?.station.listen_url}
-         />
-       </header>
-     </div>
+        <MediaPlayer 
+        songArtist={azuraData?.now_playing.song?.artist} 
+        songTitle={azuraData?.now_playing.song?.title}
+        isPlaying={azuraData?.is_online}
+        radioLink={azuraData?.station.listen_url}
+        />
+      </header>
+      <BuyMeACoffee></BuyMeACoffee>
+    </div>
+     
   );
 
 
