@@ -5,7 +5,7 @@ import { MediaPlayer } from './components/MediaPlayer'
 import { AzuraData } from './components/interfaces';
 import { Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
-import Fingerprint from '@mui/icons-material/Fingerprint';
+import PetsIcon from '@mui/icons-material/Pets';
 import axios from 'axios';
 
 const url = 'https://play.pspsfm.com/api/nowplaying';
@@ -53,8 +53,8 @@ const App : React.FC = () => {
   if (!enabled) return (
     <div className="App">
       <header className="App-header">
-      <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="error" size="large" onClick={() => setEnabled(true)}>
-        <Fingerprint fontSize="inherit" color="inherit"/>
+      <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="inherit" size="large" onClick={() => setEnabled(true)}>
+        <PetsIcon fontSize="inherit" color="inherit"/>
       </IconButton>
       </header>
     </div>
