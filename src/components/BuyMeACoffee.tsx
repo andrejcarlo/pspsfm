@@ -32,5 +32,6 @@ export const BuyMeACoffee : React.FC = () => {
     }
   }, []);
 
-  return <div id="supportByBMC"></div>;
+  // eslint-disable-next-line jsx-a11y/iframe-has-title
+  return (<div></div>);
 }
