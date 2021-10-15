@@ -21,12 +21,15 @@ const App : React.FC = () => {
   //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
   
   useEffect(() => { 
+    // fetch data on component mount just once
+    if (azuraData === null) fetchData();
+    // fetch data continously every 5000 milliseconds
     const timer = setTimeout(() => {
       fetchData();
     }, 5000);
 
     return () => clearTimeout(timer);
-  }) // componentDidMount
+  })
 
 
   const fetchData = async () => {
@@ -41,17 +44,12 @@ const App : React.FC = () => {
     })
     .finally(() => { 
       setIsLoading(false);
+      //console.log("Data fetched!");
     })
   }
 
 
-  // const updateRadioStationData = () => {
-  //   console.log(data)
-
-  //   setAzuraData(data[0]);
-  //   console.log(azuraData);
-  // }
-
+  // Wait for user to interact with DOM
   if (!enabled) return (
     <div className="App">
       <header className="App-header">
@@ -62,7 +60,8 @@ const App : React.FC = () => {
     </div>
 
   )
-
+  
+  // Wait until all data has been fetched then initialise MediaPlayer Component
   return loading ? (
     <div className="App">
        <header className="App-header">
