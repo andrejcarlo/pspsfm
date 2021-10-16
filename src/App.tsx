@@ -1,28 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import { MediaPlayer } from './components/MediaPlayer'
-import { BuyMeACoffee } from './components/BuyMeACoffee'
 import { AzuraData } from './components/interfaces';
-import { Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import PetsIcon from '@mui/icons-material/Pets';
 import axios from 'axios';
-
+import { useTransition, animated , config} from 'react-spring'
+import { MainScreen } from './components/MainScreen';
 
 const url = 'https://play.pspsfm.com/api/nowplaying';
 
-const App : React.FC = () => {
-  const [azuraData, setAzuraData] = useState<AzuraData | null>(null);
+export const App : React.FC = () => {
+  const [azuraData, setAzuraData] = useState<AzuraData | undefined>(undefined);
   const [loading, setIsLoading] = useState(true);
   const [enabled, setEnabled] = useState(false);
-  let jsonData : AzuraData;
-  //const {loading, error, data } = useFetch(url);
-  //const { loading, error, data = [] } = useFetch('http://45.63.41.251/api/nowplaying', {}, [])
-  
+
+  const transitionEnable = useTransition(enabled, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    reverse: enabled,
+    config: { duration: 500 },
+    //onRest: () => seEnabled(!enabled),
+  })
+
+  const transitionMediaPlayer = useTransition((!loading && enabled), {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    reverse: enabled,
+    delay: 500,
+    config: { duration: 500 },
+    //onRest: () => seEnabled(!enabled),
+  })
+
   useEffect(() => { 
     // fetch data on component mount just once
-    if (azuraData === null) fetchData();
+    if (azuraData === undefined) fetchData();
     // fetch data continously every 5000 milliseconds
     const timer = setTimeout(() => {
       fetchData();
@@ -35,7 +49,7 @@ const App : React.FC = () => {
   const fetchData = async () => {
     await axios(url)
     .then(response => {
-      jsonData = JSON.parse(JSON.stringify(response.data[0]))
+      let jsonData : AzuraData = JSON.parse(JSON.stringify(response.data[0]))
       setAzuraData(jsonData)
     })
     .catch(error => {
@@ -48,47 +62,31 @@ const App : React.FC = () => {
     })
   }
 
+  return (
+    
+    // 3 transitions -> enable/disable , loading/done, mediaPlayer
+    <div className="App"> 
 
-  // Wait for user to interact with DOM
-  if (!enabled) return (
-    <div className="App">
-      <header className="App-header">
-      <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="inherit" size="large" onClick={() => setEnabled(true)}>
-        <PetsIcon fontSize="inherit" color="inherit"/>
-      </IconButton>
-      </header>
+      {transitionEnable ((style, item) => 
+        item ? '' : (
+          <animated.div style={style} className="App-disabled">
+            <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="default" size="large" onClick={() => setEnabled(true)}>
+              <PetsIcon fontSize="inherit" color="inherit"/>
+            </IconButton>
+          </animated.div>
+          
+        )
+      )}
+      
+      {transitionMediaPlayer ((style, item) => 
+      item ? (
+      <animated.div style={style} className="App-disabled">
+        <MainScreen azuraData={azuraData} />
+      </animated.div> ) : ''
+      )}
+          
     </div>
-
   )
-  
-  // Wait until all data has been fetched then initialise MediaPlayer Component
-  return loading ? (
-    <div className="App">
-       <header className="App-header">
-          <Typography variant="h1" component="div" gutterBottom>
-            Loading...
-          </Typography>
-        </header>
-     </div>
-  ) : (
-    <div className="App">
-      <header className="App-header">
-        <Typography variant="h1" component="div" gutterBottom>
-          pspspspspsps
-        </Typography>
-
-        <MediaPlayer 
-        songArtist={azuraData?.now_playing.song?.artist} 
-        songTitle={azuraData?.now_playing.song?.title}
-        isPlaying={azuraData?.is_online}
-        radioLink={azuraData?.station.listen_url}
-        />
-      </header>
-      <BuyMeACoffee></BuyMeACoffee>
-    </div>
-     
-  );
-
 
 }
 
