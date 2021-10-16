@@ -5,7 +5,7 @@ import { AzuraData } from './components/interfaces';
 import IconButton from '@mui/material/IconButton';
 import PetsIcon from '@mui/icons-material/Pets';
 import axios from 'axios';
-import { useTransition, animated , config} from 'react-spring'
+import { useTransition, animated} from 'react-spring'
 import { MainScreen } from './components/MainScreen';
 
 const url = 'https://play.pspsfm.com/api/nowplaying';
