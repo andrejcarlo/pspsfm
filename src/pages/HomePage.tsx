@@ -5,12 +5,14 @@ import { RouteComponentProps, useNavigate} from '@reach/router';
 
 import IconButton from '@mui/material/IconButton';
 import { useTransition, animated} from 'react-spring'
-import { ReactComponent as EnableIcon } from '../assets/3dviewer-material-light.svg';
+import { ReactComponent as PlayIcon } from '../assets/play_icon.svg';
 import SvgIcon from '@mui/material/SvgIcon';
 
 import {Constants} from '../components/Constants'
 
 interface Props extends RouteComponentProps {}
+
+const backgroundMedia = Constants.GIPHY_BACKGROUND;
 
 
 const HomePage : React.FC<Props> = () => {
@@ -33,12 +35,12 @@ const HomePage : React.FC<Props> = () => {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: { duration: 3000 },
+    config: { duration: 1500 },
   })
 
   useEffect(() => { 
 
-    const backgroundImageTimer = setInterval(() => setBackgroundIndex(state => (state + 1) % Constants.BACKGROUND_IMAGES.length), 4000)
+    const backgroundImageTimer = setInterval(() => setBackgroundIndex(state => (state + 1) % backgroundMedia.length), 7500)
 
     console.log("HomePage loaded")
     
@@ -65,17 +67,19 @@ const HomePage : React.FC<Props> = () => {
           className={styles.bg}
           style={{
             ...style,
-            backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
+            //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
+            backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
           }}
           /> 
+          
       ))}
 
       {transitionEnable ((style, item) => 
         item ? '' : (
           <animated.div style={style} className={styles.App_disabled}>
-            <IconButton sx={{fontSize:500}} aria-label="fingerprint" color="default" size="large" onClick={enableApp}>
+            <IconButton sx={{fontSize:300, opacity:0.7}} aria-label="fingerprint" color="default" size="large" onClick={enableApp}>
               <SvgIcon fontSize="inherit">
-                  <EnableIcon />
+                  <PlayIcon />
               </SvgIcon>
             </IconButton>
           </animated.div>
