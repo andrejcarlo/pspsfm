@@ -16,10 +16,21 @@ import {Constants} from '../components/Constants'
 
 interface Props extends RouteComponentProps { }
 
+const backgroundMedia = Constants.GIPHY_BACKGROUND;
 
 const MainChannel : React.FC<Props> = () => {
     const [radioData, setRadioData] = useState<RadioData | undefined>(undefined);
     const [loading, setIsLoading] = useState(true);
+    const [backgroundIndex, setBackgroundIndex] = useState(0)
+    
+
+    const transitionBackground = useTransition(backgroundIndex, {
+        key: backgroundIndex,
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: 1500 },
+      })
 
     const transitionMediaPlayer = useTransition((!loading), {
         from: { opacity: 0 },
@@ -37,16 +48,17 @@ const MainChannel : React.FC<Props> = () => {
         // fetch data continously every 5000 milliseconds
         const radioDataTimer = setTimeout(() => {
           fetchData();
-        }, 5000);
+          setBackgroundIndex(state => (state + 1) % backgroundMedia.length);
+        }, 7500);
     
         // const backgroundImageTimer = setInterval(() => setBackgroundIndex(state => (state + 1) % Constants.BACKGROUND_IMAGES.length), 4000)
     
         return () => { 
-            clearTimeout(radioDataTimer);
             //clearTimeout(backgroundImageTimer)
+            clearTimeout(radioDataTimer);
           }
     
-      })
+      },[radioData])
     
     
     const fetchData = async () => {
@@ -70,11 +82,26 @@ const MainChannel : React.FC<Props> = () => {
         {transitionMediaPlayer ((style, item) => 
         item ? (
         <animated.div style={style} className={styles.App_disabled}>
-            <Typography variant="h1" component="div" gutterBottom>
+            {transitionBackground((style, i) => (
+                <animated.div
+                className={styles.bg}
+                style={{
+                    ...style,
+                    //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
+                    backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
+                }}
+                /> 
+                
+            ))}
+            <Typography sx={{zIndex:1, color:'white'}} variant="h1" component="div">
                 pspspspspsps
             </Typography>
 
-            <MediaPlayer 
+            <Typography sx={{zIndex:1, color:'white'}} variant="h3" component="div">
+                {radioData?.now_playing.song?.title} - {radioData?.now_playing.song?.artist}
+            </Typography>
+
+            <MediaPlayer
             songArtist={radioData?.now_playing.song?.artist} 
             songTitle={radioData?.now_playing.song?.title}
             isPlaying={radioData?.is_online}
@@ -84,6 +111,9 @@ const MainChannel : React.FC<Props> = () => {
             <BuyMeACoffee></BuyMeACoffee>
         </animated.div> ) : ''
         )}
+
+        
+
     </div>
   )
 } 

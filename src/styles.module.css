@@ -13,10 +13,21 @@
 }
 
 .main_title{
+    position: absolute;
+    display: flex;
+    color:rgb(255, 255, 255);
     font-family: museo-sans, sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
-    font-size: 4rem;
+    font-size: 8rem;
+    
+}
+
+.player_container {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
 }
 
 .player_description {

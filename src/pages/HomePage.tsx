@@ -41,8 +41,6 @@ const HomePage : React.FC<Props> = () => {
   useEffect(() => { 
 
     const backgroundImageTimer = setInterval(() => setBackgroundIndex(state => (state + 1) % backgroundMedia.length), 7500)
-
-    console.log("HomePage loaded")
     
 
     return () => { 
@@ -62,21 +60,22 @@ const HomePage : React.FC<Props> = () => {
     // 3 transitions -> enable/disable , loading/done, mediaPlayer
     <div className={styles.App}> 
 
-      {transitionBackground((style, i) => (
-        <animated.div
-          className={styles.bg}
-          style={{
-            ...style,
-            //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
-            backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
-          }}
-          /> 
-          
-      ))}
-
       {transitionEnable ((style, item) => 
         item ? '' : (
           <animated.div style={style} className={styles.App_disabled}>
+
+            {transitionBackground((style, i) => (
+                <animated.div
+                className={styles.bg}
+                style={{
+                    ...style,
+                    //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
+                    backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
+                }}
+                /> 
+                
+            ))}
+            
             <IconButton sx={{fontSize:300, opacity:0.7}} aria-label="fingerprint" color="default" size="large" onClick={enableApp}>
               <SvgIcon fontSize="inherit">
                   <PlayIcon />

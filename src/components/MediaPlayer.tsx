@@ -61,10 +61,6 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
 
     return props.isPlaying ? (
         <div>
-            <div className={styles.player_description}>
-                {props.songTitle} - {props.songArtist}
-            </div>
-
             {renderPlayButton()}
 
             <ReactPlayer
@@ -86,9 +82,9 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
         </div>
     ) : (
         <div>
-            <div className={styles.player_offline}>
+            <Typography sx={{zIndex:1, color:'white'}} variant="h2" component="div">
                 Meow! Station is offline :(
-            </div>
+            </Typography>
 
         </div>
     )
