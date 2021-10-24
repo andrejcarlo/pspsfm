@@ -1,10 +1,13 @@
 
 import React, {useState, useEffect} from 'react';
+import styles from '../styles.module.css'
+
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import ReactPlayer from 'react-player'
+
 
 interface Props {
     songTitle?: string,
@@ -58,9 +61,9 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
 
     return props.isPlaying ? (
         <div>
-            <Typography variant="h3" component="div" gutterBottom>
+            <div className={styles.player_description}>
                 {props.songTitle} - {props.songArtist}
-            </Typography>
+            </div>
 
             {renderPlayButton()}
 
@@ -83,9 +86,9 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
         </div>
     ) : (
         <div>
-            <Typography variant="h3" component="div" gutterBottom>
+            <div className={styles.player_offline}>
                 Meow! Station is offline :(
-            </Typography>
+            </div>
 
         </div>
     )

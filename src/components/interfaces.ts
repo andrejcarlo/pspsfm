@@ -9,7 +9,7 @@ export interface RadioStation {
     url: string,
 }
 
-export interface AzuraData {
+export interface RadioData {
     cache: string,
     is_online: boolean
     listeners: Listeners
