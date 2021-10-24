@@ -18,6 +18,28 @@
   color: 'white'
 }
 
+.main-title{
+  font-family: museo-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+}
+
+.media-player-description {
+  font-family: museo-sans, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 3rem;
+}
+
+.media-player-offline {
+  font-family: museo-sans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -42,6 +64,17 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  will-change: opacity;
 }
 
 @keyframes App-logo-spin {
