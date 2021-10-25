@@ -20,7 +20,7 @@ export const BuyMeACoffee : React.FC = () => {
         "data-message",
         "Purrrrrrrrrrr!"
       );
-      script.setAttribute("data-color", "#FF5F5F");
+      script.setAttribute("data-color", "#FFFFFF");
       script.setAttribute("data-position", "Right");
       script.setAttribute("data-x_margin", "18");
       script.setAttribute("data-y_margin", "18");

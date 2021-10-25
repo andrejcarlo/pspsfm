@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styles from '../styles.module.css'
 
 import { BuyMeACoffee } from '../components/BuyMeACoffee'
-import { RadioData } from '../components/interfaces'
 import { MediaPlayer } from '../components/MediaPlayer'
 
-import Typography from '@mui/material/Typography'
 import { RouteComponentProps } from '@reach/router'
 import axios from 'axios';
 import { useTransition, animated} from 'react-spring'
 
 import {Constants} from '../components/Constants'
+import { RadioData } from '../components/interfaces'
 
 
 
@@ -93,13 +92,14 @@ const MainChannel : React.FC<Props> = () => {
                 /> 
                 
             ))}
-            <Typography sx={{zIndex:1, color:'white'}} variant="h1" component="div">
-                pspspspspsps
-            </Typography>
+            <div className={styles.App_logo} title={"@andrejcarlo <3 @alxmuller"}>
+                psps fm
+            </div>
 
-            <Typography sx={{zIndex:1, color:'white'}} variant="h3" component="div">
-                {radioData?.now_playing.song?.title} - {radioData?.now_playing.song?.artist}
-            </Typography>
+            <div className={styles.channel_title}>
+                🐈‍⬛ 🐈‍⬛ 🐈‍⬛ 🐈‍⬛
+            </div>
+
 
             <MediaPlayer
             songArtist={radioData?.now_playing.song?.artist} 

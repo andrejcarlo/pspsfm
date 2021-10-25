@@ -1,5 +1,5 @@
 export class Constants {
-    static readonly RADIO_URL = 'https://play.pspsfm.com/api/nowplaying';
+    static readonly RADIO_URL = 'https://play.pspsfm.com/api/nowPlaying';
     
     static readonly BACKGROUND_IMAGES = new Array<string>(
         'photo-1544511916-0148ccdeb877',

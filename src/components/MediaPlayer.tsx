@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect} from 'react';
+import styles from '../styles.module.css'
 
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
@@ -43,16 +43,14 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
     const renderPlayButton = () => { 
         if (playing === false) {
             return ( 
-                <IconButton sx={{fontSize:70}} onClick={toggle} size='large' color="error">
-                    <PlayCircleOutlineIcon fontSize="inherit" color="inherit">
-                    </PlayCircleOutlineIcon>
+                <IconButton sx={{fontSize:70, color:'white'}} onClick={toggle} size='large'>
+                    <PlayCircleOutlineIcon fontSize="inherit" color="inherit" />
                 </IconButton>
             )
         } else if (playing === true) {
             return ( 
-                <IconButton sx={{fontSize:70}} onClick={toggle} size='large' color="error">
-                    <PauseCircleOutlineIcon fontSize="inherit" color="inherit">
-                    </PauseCircleOutlineIcon>
+                <IconButton sx={{fontSize:70, color:'white'}} onClick={toggle} size='large'>
+                    <PauseCircleOutlineIcon fontSize="inherit" color="inherit" />
                 </IconButton>
             )
         }
@@ -60,7 +58,19 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
 
     return props.isPlaying ? (
         <div>
-            {renderPlayButton()}
+            
+            <div className={styles.player_description}>
+                <div className={styles.player_button}>
+                    {renderPlayButton()}
+                </div>
+                <div className={styles.player_description_artist}>
+                    {props.songArtist}
+                </div>
+                <div className={styles.player_description_song}>
+                    {props.songTitle}
+                </div>
+            </div>
+            
 
             <ReactPlayer
             key={key}
@@ -80,12 +90,11 @@ export const MediaPlayer : React.FC<Props> = (props:Props) => {
 
         </div>
     ) : (
-        <div>
-            <Typography sx={{zIndex:1, color:'white'}} variant="h2" component="div">
-                Meow! Station is offline :(
-            </Typography>
-
+            
+        <div className={styles.player_offline} title={"It's Jacob's fault!"}>
+            Meow! Station is offline :(
         </div>
+
     )
 }
   
