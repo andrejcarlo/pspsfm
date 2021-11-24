@@ -14,12 +14,14 @@ import { useTransition, animated} from 'react-spring'
 
 import { Constants } from '../common/utils/Constants'
 import { RadioData } from '../common/utils/interfaces'
+import { channel } from 'diagnostics_channel';
 
 interface Props {
   // nothing  
 }
 
 const backgroundMedia = Constants.GIPHY_BACKGROUND;
+const channel_text = ['Emolino','Emolino','Emolino','Emolino','Emolino','Emolino','Emolino','Emolino']
 
 const MainChannel : React.FC<Props> = () => {
     const [radioData, setRadioData] = useState<RadioData | undefined>(undefined);
@@ -102,20 +104,23 @@ const MainChannel : React.FC<Props> = () => {
                     //backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
                 }}
                 > 
-                    <Image quality={100} className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Background Gifs" layout='fill' objectFit='cover' />
+                    <Image quality={100} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Boo" layout='fill' objectFit='cover' />
                 </animated.div>
                 
             ))}
 
-            <Navbar />
+            <Navbar channel_selected={"emolino"} />
 
             <Marquee 
-            className={styles.channel_title}
             speed={100}
             gradient={true}
             pauseOnClick={true}
             >
-                Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino hi Emolino Emolino Emolino Emolino Emolino Emolino Emolino help Emolino <br></br>
+                {channel_text.map((item,i) => {
+                    return <div key={i} className={styles.channel_title_text}>
+                        {item}
+                    </div> 
+                })}
             </Marquee>
 
 

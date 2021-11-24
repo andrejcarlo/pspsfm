@@ -47,8 +47,16 @@
     z-index: 0;
 }
 
-.channel_title {
+.channel_title_container {
     z-index: 99;
     font-size: 4rem;
+    opacity: 0.8;
+}
+
+.channel_title_text {
+    z-index: 99;
+    font-size: 4rem;
+    margin-left: 15px;
+    margin-right: 15px;
     opacity: 0.8;
 }
