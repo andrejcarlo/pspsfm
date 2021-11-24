@@ -1,0 +1,51 @@
+.player_container {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+.player_description {
+    position: absolute;
+    bottom: 6rem;
+
+    left:0%;
+    right:0%;
+
+    display:flex;
+    justify-content: center;
+    justify-items: center;
+    flex-direction: column;
+
+    z-index: 99;
+}
+
+.player_button {
+    display: flex;
+    justify-content: center;
+}
+
+.player_description_artist {
+    font-weight: 1000;
+    font-style: normal;
+    font-size: 1.2rem;
+    
+    z-index: 99;
+}
+
+.player_description_song {
+    
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.2rem;
+
+    z-index: 99;
+}
+
+.player_offline {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4rem;
+
+    z-index:99;
+}

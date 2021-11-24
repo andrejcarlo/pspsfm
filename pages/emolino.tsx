@@ -1,19 +1,21 @@
+
 import React, { useEffect, useState } from 'react'
-import styles from '../styles.module.css'
+import styles from '../styles/Station.module.css'
+import Head from 'next/head'
 
-import { BuyMeACoffee } from '../components/BuyMeACoffee'
-import { MediaPlayer } from '../components/MediaPlayer'
+import { BuyMeACoffee } from '../common/components/BuyMeACoffee'
+import { MediaPlayer } from '../common/components/MediaPlayer'
 
-import { RouteComponentProps } from '@reach/router'
 import axios from 'axios';
+import Marquee from "react-fast-marquee";
 import { useTransition, animated} from 'react-spring'
 
-import {Constants} from '../components/Constants'
-import { RadioData } from '../components/interfaces'
+import { Constants } from '../common/utils/Constants'
+import { RadioData } from '../common/utils/interfaces'
 
-
-
-interface Props extends RouteComponentProps { }
+interface Props {
+  // nothing  
+}
 
 const backgroundMedia = Constants.GIPHY_BACKGROUND;
 
@@ -78,6 +80,14 @@ const MainChannel : React.FC<Props> = () => {
 
     return (
     <div className={styles.App}>
+        <Head>
+            <title>
+                Psps FM - Emolino
+            </title>
+            <meta name="description" content="Listen to our emolino mixtape by @alxmuller" />
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
+
         {transitionMediaPlayer ((style, item) => 
         item ? (
         <animated.div style={style} className={styles.App_disabled}>
@@ -93,12 +103,26 @@ const MainChannel : React.FC<Props> = () => {
                 
             ))}
             <div className={styles.App_logo} title={"@andrejcarlo <3 @alxmuller"}>
-                psps fm
+                <Marquee 
+                speed={40}
+                gradient={false}
+                pauseOnHover={true}
+                direction={"right"}
+                >
+                    psps fm   emolino    ocean    doors    naughty
+                </Marquee>
             </div>
 
-            <div className={styles.channel_title}>
-                🐈‍⬛ 🐈‍⬛ 🐈‍⬛ 🐈‍⬛
-            </div>
+            
+
+            <Marquee 
+            className={styles.channel_title}
+            speed={100}
+            gradient={true}
+            pauseOnClick={true}
+            >
+                Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino Emolino hi Emolino Emolino Emolino Emolino Emolino Emolino Emolino help Emolino <br></br>
+            </Marquee>
 
 
             <MediaPlayer

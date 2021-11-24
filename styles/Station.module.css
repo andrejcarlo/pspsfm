@@ -1,0 +1,53 @@
+
+.App {
+    text-align: center;
+    overflow: hidden;
+}
+
+.App_logo {
+    position: absolute;
+    top: 2rem;
+    left: 0rem;
+    right: 0rem;
+
+    font-weight: 300;
+    font-style: normal;
+    font-size: 2rem;
+    tab-size: 4;
+}
+
+.App_disabled {
+    background-color: #ffffff;
+    color:rgb(255, 255, 255);
+
+    font-family: museo-sans, sans-serif;
+    font-size: calc(10px + 2vmin);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+    cursor: default;
+}
+
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    will-change: opacity;
+    z-index: 0;
+}
+
+.channel_title {
+    z-index: 99;
+    font-size: 4rem;
+    opacity: 0.8;
+}

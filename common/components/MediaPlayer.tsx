@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import styles from '../styles.module.css'
+import styles from '../../styles/MediaPlayer.module.css'
 
 import IconButton from '@mui/material/IconButton'
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';

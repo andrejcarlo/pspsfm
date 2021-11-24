@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles.module.css'
-
-import { RouteComponentProps, useNavigate} from '@reach/router';
+import styles from '../styles/Station.module.css'
 
 import IconButton from '@mui/material/IconButton';
-import { useTransition, animated} from 'react-spring'
-import { ReactComponent as PlayIcon } from '../assets/play_icon.svg';
-import SvgIcon from '@mui/material/SvgIcon';
+import { useTransition, animated} from 'react-spring';
 
-import {Constants} from '../components/Constants'
+import Head from 'next/head';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-interface Props extends RouteComponentProps {}
+import { Constants } from '../common/utils/Constants';
+
+interface Props {
+  // nothing
+}
 
 const backgroundMedia = Constants.GIPHY_BACKGROUND;
 
 
-const HomePage : React.FC<Props> = () => {
+const Home : React.FC<Props> = () => {
   const [enabled, setEnabled] = useState(false);
-  const [backgroundIndex, setBackgroundIndex] = useState(0)
-  const navigate = useNavigate();
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const router = useRouter();
+
 
   const transitionEnable = useTransition(enabled, {
     from: { opacity: 0 },
@@ -51,7 +54,7 @@ const HomePage : React.FC<Props> = () => {
 
   const enableApp = () => {
       setEnabled(true);
-      navigate('emolino')
+      router.push('emolino');
   }
 
 
@@ -59,6 +62,13 @@ const HomePage : React.FC<Props> = () => {
     
     // 3 transitions -> enable/disable , loading/done, mediaPlayer
     <div className={styles.App}> 
+      <Head>
+          <title>
+             Welcome to Psps FM ?!
+          </title>
+          <meta name="description" content="Listen to our latest radio stations pspsps" />
+          <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       {transitionEnable ((style, item) => 
         item ? '' : (
@@ -77,9 +87,7 @@ const HomePage : React.FC<Props> = () => {
             ))}
             
             <IconButton sx={{fontSize:300, opacity:0.7}} aria-label="fingerprint" color="default" size="large" onClick={enableApp}>
-              <SvgIcon fontSize="inherit">
-                  <PlayIcon />
-              </SvgIcon>
+                  <Image src="/play_icon.svg" alt="Press me to start" width="300" height="300"/>
             </IconButton>
           </animated.div>
           
@@ -91,4 +99,4 @@ const HomePage : React.FC<Props> = () => {
 
 }
 
-export default HomePage;
+export default Home;
