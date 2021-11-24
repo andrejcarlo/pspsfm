@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Station.module.css';
 import Head from 'next/head';
@@ -20,10 +19,9 @@ interface Props {
 }
 
 const backgroundMedia = Constants.GIPHY_BACKGROUND;
-const channel_text = ['Emolino','Emolino','Emolino','Emolino','Emolino','Emolino','Emolino','Emolino']
+const channel_text = ['Ocean','Ocean','Ocean','Ocean','Ocean','Ocean','Ocean','Ocean']
 
-const EmolinoChannel
- : React.FC<Props> = () => {
+const OceanChannel : React.FC<Props> = () => {
     const [radioData, setRadioData] = useState<RadioData | undefined>(undefined);
     const [loading, setIsLoading] = useState(true);
     const [backgroundIndex, setBackgroundIndex] = useState(0)
@@ -56,6 +54,8 @@ const EmolinoChannel
           setBackgroundIndex(state => (state + 1) % backgroundMedia.length);
         }, 7500);
     
+        // const backgroundImageTimer = setInterval(() => setBackgroundIndex(state => (state + 1) % Constants.BACKGROUND_IMAGES.length), 4000)
+    
         return () => { 
             //clearTimeout(backgroundImageTimer)
             clearTimeout(radioDataTimer);
@@ -67,7 +67,7 @@ const EmolinoChannel
     const fetchData = async () => {
         await axios(Constants.RADIO_URL)
         .then(response => {
-            let jsonData : RadioData = JSON.parse(JSON.stringify(response.data[0]))
+            let jsonData : RadioData = JSON.parse(JSON.stringify(response.data[1]))
             setRadioData(jsonData)
         })
         .catch(error => {
@@ -84,9 +84,9 @@ const EmolinoChannel
     <div className={styles.App}>
         <Head>
             <title>
-                Psps FM - Emolino
+                Psps FM - Ocean
             </title>
-            <meta name="description" content="Listen to our emolino mixtape by @alxmuller" />
+            <meta name="description" content="Listen to our ocean mixtape by @andrejcarlo" />
             <meta name="keywords" content="music, streaming, entertainment"></meta>
             <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -108,7 +108,7 @@ const EmolinoChannel
                 
             ))}
 
-            <Navbar channel_selected={"emolino"} />
+            <Navbar channel_selected={"ocean"} />
 
             <Marquee 
             speed={100}
@@ -140,5 +140,4 @@ const EmolinoChannel
   )
 } 
 
-export default EmolinoChannel
-;
+export default OceanChannel;

@@ -54,7 +54,7 @@ const Home : React.FC<Props> = () => {
 
   const enableApp = () => {
       setEnabled(true);
-      router.push('emolino');
+      router.push('emolino'); // emolino is main
   }
 
 

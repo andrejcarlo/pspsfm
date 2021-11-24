@@ -41,15 +41,15 @@ return (
                 </div>
             </Link>
             /
-            <Link href={"/doors"} passHref={true}>
-                <div className={(props.channel_selected == "doors" ? styles.navbar_element_selected :  styles.navbar_element)}> 
-                    doors
+            <Link href={"/macaque"} passHref={true}>
+                <div className={(props.channel_selected == "macaque" ? styles.navbar_element_selected :  styles.navbar_element)}> 
+                    macaque
                 </div>
             </Link>
             /
-            <Link href={"/naughty"} passHref={true}>
-                <div className={(props.channel_selected == "naughty" ? styles.navbar_element_selected :  styles.navbar_element)}> 
-                    naughty
+            <Link href={"/about"} passHref={true}>
+                <div className={(props.channel_selected == "about" ? styles.navbar_element_selected :  styles.navbar_element)}> 
+                    about
                 </div>
             </Link>
                 
