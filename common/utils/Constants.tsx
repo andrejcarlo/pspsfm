@@ -15,12 +15,12 @@ export class Constants {
     )
 
     static readonly GIPHY_BACKGROUND = new Array<string> (
-        'RkDSu8RODB7hT44m3K/giphy_downsized.gif',  // https://media.giphy.com/media/RkDSu8RODB7hT44m3K/giphy-downsized.gif
-        'XXYkaKVk1Luda/giphy_downsized.gif', // https://media.giphy.com/media/
-        'l3UcrZHrGW2CjHXqM/giphy_downsized.gif', // https://media.giphy.com/media/l3UcrZHrGW2CjHXqM/source.gif
-        '46zn5X9okRdmQfqhY6/giphy_downsized.gif',// https://media.giphy.com/media/46zn5X9okRdmQfqhY6/giphy.gif
-        '5AqZfTICAn9HG/giphy_downsized.gif', // https://media.giphy.com/media/5AqZfTICAn9HG/source.gif
-        'zV5IxD2rFSM7e/giphy_downsized.gif', // https://media.giphy.com/media/
-        'mALbe6lXANk4w/giphy_downsized.gif', // https://media.giphy.com/media/
+        //'RkDSu8RODB7hT44m3K/giphy.gif',  // https://media.giphy.com/media/RkDSu8RODB7hT44m3K/giphy.gif
+        'XXYkaKVk1Luda/source.gif', // https://media.giphy.com/media/
+        'l3UcrZHrGW2CjHXqM/source.gif', // https://media.giphy.com/media/l3UcrZHrGW2CjHXqM/source.gif
+        '46zn5X9okRdmQfqhY6/giphy.gif',// https://media.giphy.com/media/46zn5X9okRdmQfqhY6/giphy.gif
+        '5AqZfTICAn9HG/source.gif', // https://media.giphy.com/media/5AqZfTICAn9HG/source.gif
+        'zV5IxD2rFSM7e/source.gif', // https://media.giphy.com/media/
+        'mALbe6lXANk4w/source.gif', // https://media.giphy.com/media/
     )
 }
