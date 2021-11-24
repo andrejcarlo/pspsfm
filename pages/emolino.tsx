@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import { BuyMeACoffee } from '../common/components/BuyMeACoffee'
 import { MediaPlayer } from '../common/components/MediaPlayer'
+import { Navbar } from '../common/components/Navbar'
 
 import axios from 'axios';
 import Marquee from "react-fast-marquee";
@@ -105,18 +106,8 @@ const MainChannel : React.FC<Props> = () => {
                 </animated.div>
                 
             ))}
-            <div className={styles.App_logo} title={"@andrejcarlo <3 @alxmuller"}>
-                <Marquee 
-                speed={40}
-                gradient={false}
-                pauseOnHover={true}
-                direction={"right"}
-                >
-                    psps fm  /  e̶m̶o̶l̶i̶n̶o̶  /  ocean  /  doors  /  naughty
-                </Marquee>
-            </div>
 
-            
+            <Navbar />
 
             <Marquee 
             className={styles.channel_title}
