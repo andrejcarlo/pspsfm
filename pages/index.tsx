@@ -83,7 +83,7 @@ const Home : React.FC<Props> = () => {
                     //backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
                 }}
                 >
-                  <Image className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Background Gifs" layout='fill' objectFit='cover'/>
+                  <Image quality={100} className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Background Gifs" layout='fill' objectFit='cover'/>
                 </animated.div>
                 
             ))}
