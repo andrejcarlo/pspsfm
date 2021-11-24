@@ -1,7 +1,8 @@
 
-import React, { useEffect, useState } from 'react'
-import styles from '../styles/Station.module.css'
-import Head from 'next/head'
+import React, { useEffect, useState } from 'react';
+import styles from '../styles/Station.module.css';
+import Head from 'next/head';
+import Image from 'next/image';
 
 import { BuyMeACoffee } from '../common/components/BuyMeACoffee'
 import { MediaPlayer } from '../common/components/MediaPlayer'
@@ -93,13 +94,15 @@ const MainChannel : React.FC<Props> = () => {
         <animated.div style={style} className={styles.App_disabled}>
             {transitionBackground((style, i) => (
                 <animated.div
-                className={styles.bg}
+                //className={styles.bg}
                 style={{
                     ...style,
                     //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
-                    backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
+                    //backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
                 }}
-                /> 
+                > 
+                    <Image className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Background Gifs" layout='fill' objectFit='cover' />
+                </animated.div>
                 
             ))}
             <div className={styles.App_logo} title={"@andrejcarlo <3 @alxmuller"}>
@@ -109,7 +112,7 @@ const MainChannel : React.FC<Props> = () => {
                 pauseOnHover={true}
                 direction={"right"}
                 >
-                    psps fm   emolino    ocean    doors    naughty
+                    psps fm  /  e̶m̶o̶l̶i̶n̶o̶  /  ocean  /  doors  /  naughty
                 </Marquee>
             </div>
 
