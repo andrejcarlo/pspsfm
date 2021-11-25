@@ -1,39 +1,12 @@
 import React, { useEffect } from "react";
+import Script from 'next/script';
 
 export const BuyMeACoffee : React.FC = () => {
   // const
   useEffect(() => {
     const bmcButton : HTMLElement | null = document.getElementById("bmc-wbtn");
-    if (bmcButton === null) {
-
-      const script = document.createElement("script");
-      const div = document.getElementById("supportByBMC");
-      script.setAttribute(
-        "src",
-        "https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-      );
-      script.setAttribute("data-name", "BMC-Widget");
-      script.setAttribute("data-cfasync", "false");
-      script.setAttribute("data-id", "pspsfm");
-      script.setAttribute("data-description", "Support me on Buy me a coffee!");
-      script.setAttribute(
-        "data-message",
-        "Purrrrrrrrrrr!"
-      );
-      script.setAttribute("data-color", "#FFFFFF");
-      script.setAttribute("data-position", "Right");
-      script.setAttribute("data-x_margin", "18");
-      script.setAttribute("data-y_margin", "18");
-
-      script.onload = function () {
-        var evt = document.createEvent("Event");
-        evt.initEvent("DOMContentLoaded", false, false);
-        window.dispatchEvent(evt);
-      };
-      if (div !== null) {
-          div.appendChild(script);
-      }
-    } else {
+    
+    if (bmcButton !== null) {
       bmcButton.style.display = "flex";
     }
 
@@ -46,6 +19,29 @@ export const BuyMeACoffee : React.FC = () => {
     }
   }, []);
 
+  const loadbmc = () => {
+    var evt = document.createEvent("Event");
+    evt.initEvent("DOMContentLoaded", false, false);
+    window.dispatchEvent(evt);
+  }
+
   // eslint-disable-next-line jsx-a11y/iframe-has-title
-  return (<div id="supportByBMC"></div>);
+  return (
+    <div id="supportByBMC">
+      <Script
+        id="supportByBMCScript"
+        data-name="BMC-Widget"
+        data-cfasync="false"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="pspsfm"
+        data-description="Support me on Buy me a coffee!"
+        data-message="Purrrrrrrrrrr!"
+        data-color="#FFFFFF"
+        data-position="Right"
+        data-x_margin="18"
+        data-y_margin="18"
+        onLoad={loadbmc}
+      />
+    </div>
+  );
 }

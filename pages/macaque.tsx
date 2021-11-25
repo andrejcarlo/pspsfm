@@ -127,7 +127,7 @@ const Macaque : React.FC<Props> = () => {
             radioLink={radioData?.station.listen_url}
             />
             
-            <BuyMeACoffee></BuyMeACoffee>
+            <BuyMeACoffee />
         </animated.div> ) : ''
         )}
 

@@ -127,7 +127,7 @@ const EmolinoChannel
             radioLink={radioData?.station.listen_url}
             />
             
-            <BuyMeACoffee></BuyMeACoffee>
+            <BuyMeACoffee />
         </animated.div> ) : ''
         )}
     </div>
