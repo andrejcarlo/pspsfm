@@ -76,14 +76,11 @@ const Home : React.FC<Props> = () => {
 
             {transitionBackground((style, i) => (
                 <animated.div
-                //className={styles.bg}
                 style={{
                     ...style,
-                    //backgroundImage: `url(https://images.unsplash.com/${Constants.BACKGROUND_IMAGES[i]}?w=1920&q=80&auto=format&fit=crop)`,
-                    //backgroundImage: `url(https://media.giphy.com/media/${backgroundMedia[i]})`,
                 }}
                 >
-                  <Image quality={100} className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Boo" layout='fill' objectFit='cover'/>
+                  <Image priority={true} quality={100} className={styles.bg} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Boo" layout='fill' objectFit='cover'/>
                 </animated.div>
                 
             ))}
