@@ -100,7 +100,7 @@ const Macaque : React.FC<Props> = () => {
                     ...style,
                 }}
                 > 
-                    <Image priority={true} quality={100} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Boo" layout='fill' objectFit='cover' />
+                    <Image priority={false} quality={100} src={`https://media.giphy.com/media/${backgroundMedia[i]}`} alt="Boo" layout='fill' objectFit='cover' />
                 </animated.div>
                 
             ))}
